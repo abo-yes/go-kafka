@@ -1,21 +1,22 @@
 package main
 
 import (
-	"fmt"
-	"os"
 	"context"
+	"fmt"
 	"github.com/segmentio/kafka-go"
+	"os"
 )
 
 func main() {
 	broker := os.Getenv("KAFKA_BROKER")
 	topic := os.Getenv("KAFKA_TOPIC")
-	
+
 	r := kafka.NewReader(kafka.ReaderConfig{
 		Brokers:   []string{broker},
 		Topic:     topic,
 		Partition: 0,
 	})
+	fmt.Print("Step 3")
 
 	for {
 		msg, err := r.ReadMessage(context.Background())
